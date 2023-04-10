@@ -1,5 +1,5 @@
 const inputEl = document.getElementById("validation-input");
-const enumerateEl = inputEl.getAttribute("data-length");
+const enumerateEl = Number(inputEl.getAttribute("data-length"));
 
 inputEl.addEventListener("blur", function () {
   if (this.value.length !== enumerateEl) {
