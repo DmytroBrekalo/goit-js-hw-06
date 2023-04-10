@@ -14,31 +14,26 @@ const images = [
 ];
 
 const gallery = document.querySelector(".gallery");
-
-const item = images
-  .map(
-    (image) =>
-      `<li class="gallery__item"><img class="gallery__img" src=${image.url} alt=${image.alt}></img></li>`
-  )
-  .join("");
-
-gallery.insertAdjacentHTML("beforeend", item);
+const createGalleryItem = ({ url, alt }) =>
+  `<li class="gallery__item"><img class="gallery__img" src = "${url}" alt = "${alt}"></li>`;
+const galleryMarkup = images.reduce(
+  (acc, item) => acc + createGalleryItem(item),
+  ""
+);
+gallery.insertAdjacentHTML("beforeend", galleryMarkup);
 
 gallery.style.maxWidth = "1600px";
 gallery.style.display = "flex";
 gallery.style.gap = "20px";
-gallery.style.flexWrap = "wrap";
-gallery.style.padding = "0";
 
 const liEls = gallery.querySelectorAll(".gallery__item");
 liEls.forEach((li) => {
   li.style.listStyle = "none";
-  li.style.flexBasis = "calc((100% - 20px * (3 - 1)) / 3)";
 });
 
 const imgEls = gallery.querySelectorAll(".gallery__img");
 imgEls.forEach((img) => {
   img.style.display = "block";
-  img.style.height = "auto";
+  img.style.height = "324px";
   img.style.maxWidth = "100%";
 });
